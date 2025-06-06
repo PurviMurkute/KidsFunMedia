@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 
 dotenv.config(); //To use environment variables in your Node.js (Express) app, you import and configure the dotenv package.
 
+import { getTvShow, postTvShow } from './controllers/tvshow.js';
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -21,8 +23,6 @@ const connectDB = async () => {
     }
 }
 
-const TV_SHOWS = [];
-
 app.get('/health', (req, res)=>{
     res.status(201).json({
         success: true,
@@ -30,33 +30,9 @@ app.get('/health', (req, res)=>{
     })
 })
 
-app.get('/tvshows', (req, res) => {
-    res.status(201).json({
-        success: true,
-        data: TV_SHOWS,
-        message: "All shows fetched successfully"
-    })
-})
+app.get('/tvshows', getTvShow)
 
-app.post('/addshows', (req, res) => {
-    const {title, channel, timing, thumbnail} = req.body;
-
-    const newShow = {
-        title,
-        channel,
-        timing,
-        thumbnail
-    }
-
-    TV_SHOWS.push(newShow);
-
-    res.status(201).json({
-        success: true,
-        data: newShow,
-        message: "New show added successfully"
-    })
-
-})
+app.post('/addshows', postTvShow)
 
 app.listen(PORT, () => {
     console.log(`server is running on PORT ${PORT}`)
