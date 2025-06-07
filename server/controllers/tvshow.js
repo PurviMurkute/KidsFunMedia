@@ -13,6 +13,14 @@ const getTvShow = async (req, res) => {
 const postTvShow = async (req, res) => {
   const { title, channel, timing, thumbnail } = req.body;
 
+  if(!title || !channel || !timing || !thumbnail){
+    return res.status(400).json({
+      success: false,
+      message: "all input elements are required",
+      data: null
+    })
+  }
+
   const newShow = new TvShow({
     title,
     channel,
