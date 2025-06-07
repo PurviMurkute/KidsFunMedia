@@ -23,32 +23,32 @@ const Home = () => {
 
     setTvShows(response.data.data);
   };
-  
-  const addTvShows = async () => {
-    try{
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_KEY}/addshows`,
-      {
-        title: newShow.title,
-        channel: newShow.channel,
-        timing: newShow.timing,
-        thumbnail: newShow.thumbnail,
-      }
-    );
 
-    console.log(response.data.data);
-    toast.success(response.data.message);
-    loadTvShows();
-    setIsModalOpen(false);
-    setNewShow({
-      title: "",
-      channel: "",
-      timing: "",
-      thumbnail: "",
-    });
-  }catch(e){
-    toast.error(e.response.data.message);
-  }
+  const addTvShows = async () => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_KEY}/addshows`,
+        {
+          title: newShow.title,
+          channel: newShow.channel,
+          timing: newShow.timing,
+          thumbnail: newShow.thumbnail,
+        }
+      );
+
+      console.log(response.data.data);
+      toast.success(response.data.message);
+      loadTvShows();
+      setIsModalOpen(false);
+      setNewShow({
+        title: "",
+        channel: "",
+        timing: "",
+        thumbnail: "",
+      });
+    } catch (e) {
+      toast.error(e.response.data.message);
+    }
   };
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-sky-100 relative">
-      <h1 className="text-4xl font-bold text-sky-700 py-5 text-center">
+      <h1 className="text-4xl font-bold text-white bg-sky-600 py-3 text-center">
         KidsFunMedia
       </h1>
 
@@ -78,9 +78,15 @@ const Home = () => {
           );
         })}
       </div>
-      <Button btnText={"Add New Show"} variant={"primary"} size={"lg"} btnPosition={"right"} onClick={() => {
+      <Button
+        btnText={"Add New Show"}
+        variant={"tertiary"}
+        size={"lg"}
+        btnPosition={"righttop"}
+        onClick={() => {
           setIsModalOpen(true);
-        }}/>
+        }}
+      />
 
       <Modal
         isOpen={isModalOpen}
@@ -131,9 +137,15 @@ const Home = () => {
               className="w-[350px] object-contain"
             />
           ) : null}
-          <Button btnText={"Add"} variant={"primary"} size={"md"} btnPosition={"center"} onClick={() => {
+          <Button
+            btnText={"Add"}
+            variant={"primary"}
+            size={"md"}
+            btnPosition={"center"}
+            onClick={() => {
               addTvShows();
-            }}/>
+            }}
+          />
         </div>
       </Modal>
       <Toaster />
