@@ -7,7 +7,7 @@ const Home = () => {
   const [tvShows, setTvShows] = useState([]);
 
   const loadTvShows = async () => {
-    const response = await axios.get("http://localhost:5002/tvshows");
+    const response = await axios.get(`${import.meta.env.VITE_API_KEY}/tvshows`);
 
     setTvShows(response.data.data);
   };
@@ -17,10 +17,10 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h1>KidsFunMedia</h1>
+    <div className="min-h-screen bg-sky-100">
+      <h1 className="text-4xl font-bold text-sky-700 py-5 text-center">KidsFunMedia</h1>
 
-      <div className="flex justify-evenly">
+      <div className="flex justify-center flex-wrap m-10">
       {tvShows.map((tvshow, i) => {
         const { _id, title, channel, timing, thumbnail } = tvshow;
 
