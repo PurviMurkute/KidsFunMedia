@@ -4,11 +4,11 @@ const Button = ({btnText, onClick, variant, size, btnPosition}) => {
 
   const VARIANT_CLASSES = {
     primary: "bg-sky-700 text-white font-medium hover:bg-sky-900",
-    secondary: "bg-red-600 text-white font-medium hover:bg-red-700"
+    secondary: "bg-red-400 text-white font-medium hover:bg-red-500"
   }
 
   const SIZE_CLASSES = {
-    sm: "text-sm px-2 py-1 rounded-sm my-2",
+    sm: "text-sm px-2 py-1 rounded-sm my-1",
     md: "text-md px-5 py-1 rounded-sm my-2",
     lg: "text-lg px-6 py-2 rounded-sm my-2",
   }

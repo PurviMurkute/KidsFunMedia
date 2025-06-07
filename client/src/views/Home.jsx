@@ -73,6 +73,7 @@ const Home = () => {
               channel={channel}
               timing={timing}
               thumbnail={thumbnail}
+              loadTvShows={loadTvShows}
             />
           );
         })}
@@ -80,7 +81,7 @@ const Home = () => {
       <Button btnText={"Add New Show"} variant={"primary"} size={"lg"} btnPosition={"right"} onClick={() => {
           setIsModalOpen(true);
         }}/>
-        
+
       <Modal
         isOpen={isModalOpen}
         onClose={() => {
